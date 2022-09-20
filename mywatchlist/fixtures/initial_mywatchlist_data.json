@@ -1,0 +1,112 @@
+[
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 1,
+        "fields": {
+            "watched": "Yes",
+            "title": "Parasite",
+            "rating": 4.7,
+            "release_date": "21 Juni 2019",
+            "review": "Film dapat menggambarkan realita"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 2,
+        "fields": {
+            "watched": "Yes",
+            "title": "Interstellar",
+            "rating": 4.8,
+            "release_date": "6 November 2014",
+            "review": "Film dapat menjelaskan dimensi yang tidak bisa kita pikirkan"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 3,
+        "fields": {
+            "watched": "Yes",
+            "title": "Train to Busan",
+            "rating": 4,
+            "release_date": "20 Juli 2016",
+            "review": "Film bertema zombie yang bagus"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 4,
+        "fields": {
+            "watched": "Yes",
+            "title": "Dark",
+            "rating": 4.8,
+            "release_date": "1 Desember 2017",
+            "review": "Film yang memiliki banyak plot twist"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 5,
+        "fields": {
+            "watched": "Yes",
+            "title": "Stranger Things",
+            "rating": 4,
+            "release_date": "15 Juli 2016",
+            "review": "Film fiksi yang lumayan seru"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 6,
+        "fields": {
+            "watched": "Yes",
+            "title": "Kingdom",
+            "rating": 4.2,
+            "release_date": "25 Januari 2019",
+            "review": "Film zombie yang memiliki latar belakang kerajaan"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 7,
+        "fields": {
+            "watched": "Yes",
+            "title": "Death Note",
+            "rating": 4.5,
+            "release_date": "3 October 2006",
+            "review": "Film mengenai dua orang jenius"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 8,
+        "fields": {
+            "watched": "Yes",
+            "title": "The Call",
+            "rating": 4.1,
+            "release_date": "27 November 2020",
+            "review": "Film yang lumayan memacu jantung"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 9,
+        "fields": {
+            "watched": "Yes",
+            "title": "Incantation",
+            "rating": 4.5,
+            "release_date": "18 Maret 2022",
+            "review": "Film yang sangat memacu jantung"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 10,
+        "fields": {
+            "watched": "Yes",
+            "title": "Dabbe",
+            "rating": 3.9,
+            "release_date": "2 Agustus 2013",
+            "review": "Film yang lumayan memiliki vibes seram"
+        }
+    }
+]
