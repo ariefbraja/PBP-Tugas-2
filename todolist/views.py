@@ -68,7 +68,6 @@ def create_task(request):
             saving = form.save(commit=False)
             saving.user=User.objects.get(username=request.user.username)
             saving.save()
-            messages.success(request, 'Task telah berhasil dibuat!')
             return redirect('todolist:show_todolist')
 
     context = {'form':form}

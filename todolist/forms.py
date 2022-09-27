@@ -4,4 +4,4 @@ from .models import Task
 class TodolistForm(forms.ModelForm):
     class Meta:
         model = Task
-        exclude = ('user', )
+        exclude = ('user', 'is_finished', )
