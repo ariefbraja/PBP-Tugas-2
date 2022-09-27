@@ -3,6 +3,9 @@
 
 # Apakah kita dapat membuat elemen <form> secara manual?
 Iya, kita dapat membuat secara manual.
+
+# Cara membuat <form> secara manual
+Tiap label di models.py dicetak secara satu per satu. Misalkan title kita buat `<label for="title">Title:</label>` dan atribut lainnya bisa kita gunakan juga type dan name.
   
 #  Proses alur data dari submisi yang dilakukan oleh pengguna melalui HTML form, penyimpanan data pada database, hingga munculnya data yang telah disimpan pada template HTML.
 Saat user menekan tombol submit, sistem akan membuat request ke views.py untuk disimpan ke database. Setelah itu, akan dibuat form yang akan di jalankan terlebih dahulu is_valid() agar menjadi cleaned_data agar form tersebut bisa di jalankan method save(). Fungsi di views.py yang memakai form akan memanggil redirect untuk menampilkan data yang sudah diinput. Fungsi di views.py akan menjalankan render yang akan menuju ke HTML yang di mana akan memunculkan data-data yang diinput user.
@@ -194,5 +197,12 @@ def create_task(request):
 ```
 12. Melakukan push dan commit ke Github dan deploy ke Heroku
 13. Membuat akun dummy
+
+# Link Heroku
+`https://tugas2ariefbraja.herokuapp.com/todolist/login/`
+`https://tugas2ariefbraja.herokuapp.com/todolist/`
+`https://tugas2ariefbraja.herokuapp.com/todolist/register/`
+`https://tugas2ariefbraja.herokuapp.com/todolist/create-task/`
+
   
   
