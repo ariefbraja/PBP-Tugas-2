@@ -12,13 +12,33 @@
       <th>Date</th>
       <th>Title</th>
       <th>Description</th>
+      <th>Status</th>
+      <th></th>
     </tr>
     {% comment %} Add the data below this line {% endcomment %}
     {% for x in data_todolist %}
       <tr>
-          <th>{{x.date}}</th>
-          <th>{{x.title}}</th>
-          <th>{{x.description}}</th>
+          <td>{{x.date}}</td>
+          <td>{{x.title}}</td>
+          <td>{{x.description}}</td>
+          {% if x.is_finished %}
+          <td>Selesai</td>
+          {% else %}
+          <td>Belum Selesai</td>
+          {% endif %}
+          <td>
+            <form method="POST" action="{% url 'todolist:change_status' %}">
+              {% csrf_token %}
+              <input type="hidden" name="id" value="{{x.id}}"/>
+              <button type="submit">Change Status</button>
+            </form>
+            <form method="POST" action="{% url 'todolist:delete_task' %}">
+              {% csrf_token %}
+              <input type="hidden" name="id" value="{{x.id}}"/>
+              <button type="submit">Delete</button>
+            </form>
+            
+          </td>
       </tr>
     {% endfor %}
 

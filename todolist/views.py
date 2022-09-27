@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from todolist.forms import TodolistForm
+from django.contrib.auth.models import User
 
 @login_required(login_url='/todolist/login/')
 def show_todolist(request):
@@ -14,6 +15,19 @@ def show_todolist(request):
         'data_todolist': data_todolist,
     }
     return render(request, "todolist.html", context)
+
+def delete_task(request):
+    if request.method == "POST":
+        todo = Task.objects.get(id=request.POST["id"])
+        todo.delete()
+    return redirect('todolist:show_todolist')
+
+def change_status(request):
+    if request.method == "POST":
+        todo = Task.objects.get(id=request.POST["id"])
+        todo.is_finished = not todo.is_finished
+        todo.save()
+    return redirect('todolist:show_todolist')
 
 def register(request):
     form = UserCreationForm()
@@ -24,7 +38,7 @@ def register(request):
             form.save()
             messages.success(request, 'Akun telah berhasil dibuat!')
             return redirect('todolist:login')
-    
+
     context = {'form':form}
     return render(request, 'register.html', context)
 
@@ -51,9 +65,11 @@ def create_task(request):
     if request.method == "POST":
         form = TodolistForm(request.POST)
         if form.is_valid():
-            form.save()
+            saving = form.save(commit=False)
+            saving.user=User.objects.get(username=request.user.username)
+            saving.save()
             messages.success(request, 'Task telah berhasil dibuat!')
             return redirect('todolist:show_todolist')
-        
+
     context = {'form':form}
     return render(request, 'create-task.html', context)
