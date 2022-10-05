@@ -12,11 +12,13 @@
 
         <form method="POST" >  
             {% csrf_token %}  
-            <table class="table solid border w-auto" style="text-align:left;margin-right:auto;margin-left:auto;margin-top:25px;">
+            <table class="table solid border w-auto" style="text-align:left;margin-right:auto;margin-left:auto;margin-top:25px;">  
                 {{ form.as_table }}  
+                <tr>  
+                </tr>  
             </table>  
+            <td><input class="btn btn-primary" type="submit" name="submit" value="Daftar"/></td>  
         </form>
-        <input class="btn btn-primary" type="submit" name="submit" value="Daftar" />
 
     {% if messages %}  
         <ul>   
