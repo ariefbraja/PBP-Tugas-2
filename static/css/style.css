@@ -45,6 +45,10 @@ th{
     width: 300px;
     height: 30px;
 }
+
+.cards:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
 @media (max-width: 600px) {
     /* untuk HP */
     .layout {
