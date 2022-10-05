@@ -1,3 +1,4 @@
+# Tugas 4
 # Kegunaan {% csrf_token %} pada elemen <form>. Apa yang terjadi apabila tidak ada potongan kode tersebut pada elemen <form>?
 {% csrf_token %} diimplementasikan untuk menghindari malicious attacks yang di mana menghasilkan token di server-side saat merender halaman dan memastikan untuk memeriksa ulang token ini untuk setiap permintaan yang masuk kembali. Jika permintaan yang masuk tidak berisi token, maka permintaan tersebut tidak akan dieksekusi.
 
@@ -197,6 +198,57 @@ def create_task(request):
 ```
 12. Melakukan push dan commit ke Github dan deploy ke Heroku
 13. Membuat akun dummy
+  
+# Tugas 5
+# Perbedaan dari Inline, Internal, dan External CSS
+ 1. Inline CSS : kode diletakkan di dalam tag HTML tertentu.
+ 2. Internal CSS : kode CSS internal diletakkan di dalam bagian <head> pada halaman.
+ 3. External CSS : menghubungkan ke file .CSS eksternal. Perubahan apapun yang dibuat pada file CSS akan tampil pada website.
+  
+# Kelebihan Inline, Internal, dan External CSS
+ Kelebihan Inline CSS : 
+  - Permintaan HTTP yang lebih kecil
+  
+ Kelebihan Internal CSS :
+  - Perubahan hanya terjadi pada 1 halaman
+  - Hanya menggunakan satu file yaitu html
+  
+ Kelebihan External CSS : 
+  - Ukuran file html menjadi lebih kecil
+  - File html menjadi lebih rapih
+  - File CSS yang sama bisa digunakan di banyak halaman
+  
+ # Kekurangan Inline, Internal, dan External CSS
+ Kekurangan Inline CSS :
+  - Harus diterapkan pada setiap elemen
+  - File html terlihat kurang rapih
+  
+ Kekurangan Internal CSS :
+  - Perubahan hanya terjadi pada 1 halaman dan bisa menjadi tidak efisien
+  
+ Kekurangan External CSS :
+  - Halaman belum tampil secara lengkap sebelum file CSS selesai dipanggil
+ 
+# Tag HTML5
+  1. <a> = Menentukan anchor
+  2. <br> = Memasukkan single line break
+  3. <button> = Menentukan button
+  4. <div> = Menentukan section
+  5. <input> = Menentukan input field
+  
+# Tipe-tipe CSS selector
+  1. Type selector : Selector memilih elemen berdasarkan nama tag
+  2. Class selector : Selektor memilih elemen berdasarkan nama class yang diberikan
+  3. ID selector : hampir sama dengan class selector, tetapi ID bersifat unik dan hanya boleh digunakan oleh satu elemen saja
+  4. Attribute selector : selector yang memilih elemen berdasarkan atribut
+  5. Universal selector : menyeleksi semua elemen pada jangkauan tertentu
+  
+# Cara mengimplementasikan checklist.
+  1. Membuat navigation bar dengan bootstrap
+  2. Mengubah style pada setiap tag yang diperlukan
+  3. Memasukkan kode ke file css 
+  4. Mengubah table menjadi cards pada todolist.html
+  
 
 # Link Heroku
 `https://tugas2ariefbraja.herokuapp.com/todolist/login/`
