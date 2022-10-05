@@ -230,11 +230,11 @@ def create_task(request):
   - Halaman belum tampil secara lengkap sebelum file CSS selesai dipanggil
  
 # Tag HTML5
-  1. <a> = Menentukan anchor
-  2. <br> = Memasukkan single line break
-  3. <button> = Menentukan button
-  4. <div> = Menentukan section
-  5. <input> = Menentukan input field
+  1. `<a>` = Menentukan anchor
+  2. `<br>` = Memasukkan single line break
+  3. `<button>` = Menentukan button
+  4. `<div>` = Menentukan section
+  5. `<input>` = Menentukan input field
   
 # Tipe-tipe CSS selector
   1. Type selector : Selector memilih elemen berdasarkan nama tag
