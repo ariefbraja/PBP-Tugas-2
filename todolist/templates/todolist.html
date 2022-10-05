@@ -2,48 +2,71 @@
 
  {% block content %}
 
+<style>
+  .cards{
+    border: 1px solid black;
+    margin: 20px;
+    padding: 10px;
+    width: 300px;
+    display: inline-block;
+  }
+
+  .nowrap {
+  white-space: nowrap ;
+  font-family: "Comic Sans MS";
+  }
+
+  .buttonwrapper{
+    display: flex;
+  }
+</style>
+
   <h1>Tugas 4 PBP</h1>
 
   <h5>User: </h5>
   <p>{{user}}</p>
 
-  <table>
-    <tr>
-      <th>Date</th>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Status</th>
-      <th></th>
-    </tr>
     {% comment %} Add the data below this line {% endcomment %}
     {% for x in data_todolist %}
-      <tr>
-          <td>{{x.date}}</td>
-          <td>{{x.title}}</td>
-          <td>{{x.description}}</td>
-          {% if x.is_finished %}
-          <td>Selesai</td>
-          {% else %}
-          <td>Belum Selesai</td>
-          {% endif %}
-          <td>
-            <form method="POST" action="{% url 'todolist:change_status' %}">
-              {% csrf_token %}
-              <input type="hidden" name="id" value="{{x.id}}"/>
-              <button type="submit">Change Status</button>
-            </form>
-            <form method="POST" action="{% url 'todolist:delete_task' %}">
-              {% csrf_token %}
-              <input type="hidden" name="id" value="{{x.id}}"/>
-              <button type="submit">Delete</button>
-            </form>
-            
-          </td>
-      </tr>
+    <div class = "cards" >
+        <p>
+        <span class="nowrap"><b>Date : </b></span>
+        <span class="nowrap">{{x.date}}</span>
+        </p>
+        <p>
+        <span class="nowrap"><b>Title : </b></span>
+        <span class="nowrap">{{x.title}}</span>
+        </p>
+        <p>
+        <span class="nowrap"><b>Description : </b></span>
+        <span class="nowrap">{{x.description}}</span>
+        </p>
+        <p>
+        <span class="nowrap"><b>Status : </b></span>
+        {% if x.is_finished %}
+        <span class="nowrap">Selesai</span>
+        {% else %}
+        <span class="nowrap">Belum Selesai</span>
+        {% endif %}
+        </p>
+          <div class = "buttonwrapper">
+          <form method="POST" action="{% url 'todolist:change_status' %}">
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{x.id}}"/>
+            <td><button type="submit">Change Status</button></td>
+          </form>
+          <form method="POST" action="{% url 'todolist:delete_task' %}">
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{x.id}}"/>
+            <td><button type="submit">Delete</button></td>
+          </form>
+          </div>
+
+    </div>
     {% endfor %}
+    
 
-
-  </table>
+  <br></br>
   <button><a href="{% url 'todolist:create_task' %}">Tambah Task Baru</a></button>
   <button><a href="{% url 'todolist:logout' %}">Logout</a></button>
 
