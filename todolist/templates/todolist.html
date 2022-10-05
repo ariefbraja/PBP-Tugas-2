@@ -3,32 +3,27 @@
  {% block content %}
 
 <style>
-  .cards{
-    border: 1px solid black;
-    margin: 20px;
-    padding: 10px;
-    width: 300px;
-    display: inline-block;
-  }
 
-  .nowrap {
-  white-space: nowrap ;
-  font-family: "Comic Sans MS";
-  }
-
-  .buttonwrapper{
-    display: flex;
-  }
 </style>
+<nav class="navbar" style="background-color: #90ee90;">
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1">Welcome!</span>
+    <a class="btn btn-info" href="{% url 'todolist:logout' %}" role="button">Logout</a>
+  </div>
+</nav>
 
-  <h1>Tugas 4 PBP</h1>
+<h1 class="centeredtext" >To Do Lists: </h1>
 
-  <h5>User: </h5>
-  <p>{{user}}</p>
+  <h5 class="centeredtext">User: </h5>
+  <p class="centeredtext">{{user}}</p>
+  <header>
+  <a class="btn btn-primary" href="{% url 'todolist:create_task' %}" role="button">Tambah Task</a>
+  </header>
 
     {% comment %} Add the data below this line {% endcomment %}
+    <div class="card-deck">
     {% for x in data_todolist %}
-    <div class = "cards" >
+      <div class = "cards" >
         <p>
         <span class="nowrap"><b>Date : </b></span>
         <span class="nowrap">{{x.date}}</span>
@@ -49,26 +44,25 @@
         <span class="nowrap">Belum Selesai</span>
         {% endif %}
         </p>
-          <div class = "buttonwrapper">
-          <form method="POST" action="{% url 'todolist:change_status' %}">
-            {% csrf_token %}
-            <input type="hidden" name="id" value="{{x.id}}"/>
-            <td><button type="submit">Change Status</button></td>
-          </form>
-          <form method="POST" action="{% url 'todolist:delete_task' %}">
-            {% csrf_token %}
-            <input type="hidden" name="id" value="{{x.id}}"/>
-            <td><button type="submit">Delete</button></td>
-          </form>
-          </div>
 
+        <div class = "buttonwrapper">
+        <form method="POST" action="{% url 'todolist:change_status' %}">
+          {% csrf_token %}
+          <input type="hidden" name="id" value="{{x.id}}"/>
+          <td><button type="submit" class="btn btn-warning" >Change Status</button></td>
+        </form>
+        <form method="POST" action="{% url 'todolist:delete_task' %}">
+          {% csrf_token %}
+          <input type="hidden" name="id" value="{{x.id}}"/>
+          <td><button type="submit" class="btn btn-danger" >Delete</button></td>
+        </form>
+        </div>
+
+      </div>
+    {% endfor %}\
     </div>
-    {% endfor %}
     
 
   <br></br>
-  <button><a href="{% url 'todolist:create_task' %}">Tambah Task Baru</a></button>
-  <button><a href="{% url 'todolist:logout' %}">Logout</a></button>
-
 
  {% endblock content %}

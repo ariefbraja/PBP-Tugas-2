@@ -5,3 +5,50 @@ table{
 th{
     border: 1px solid;
 }
+.cards{
+    border: 1px solid black;
+    margin: 13px;
+    padding: 15px;
+    width: 350px;
+    display: inline-block;
+    background-color: #ADD8E6;
+    border: 1px solid #c9c9c9;
+    border-radius: 7%
+  }
+
+  .nowrap {
+  white-space: nowrap ;
+  font-family: "Comic Sans MS";
+  }
+
+  .buttonwrapper{
+    display: flex;
+  }
+
+  .centeredtext{
+    text-align:center; 
+    font-family: "Comic Sans MS";
+  }
+  .button{
+    color:blue;
+  }
+  header{
+    text-align: center;
+  }
+  body{
+    background: rgb(58,138,180);
+    background: linear-gradient(90deg, rgba(58,138,180,1) 0%, rgba(29,225,253,1) 50%, rgba(58,138,180,1) 100%);
+  }
+
+  textarea {
+    resize: none;
+    width: 300px;
+    height: 30px;
+}
+@media (max-width: 600px) {
+    /* untuk HP */
+    .layout {
+      display: flex;
+      flex-direction: column;
+    }
+  }
