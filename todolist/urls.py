@@ -16,5 +16,4 @@ urlpatterns = [
     path('views-in-json/', show_json, name='show_json'),
     path('json/', views_ajax, name='views_ajax'),
     path('add/', addTask_ajax, name='addTask_ajax'),
-    path('json/delete/<int:id>', deleteTask_ajax, name='deleteTask_ajax'),
 ]
