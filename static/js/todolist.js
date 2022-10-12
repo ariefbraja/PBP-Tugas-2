@@ -57,8 +57,8 @@ function addTodolist() {
         type : "POST", // http method
         url : "addTesti/", // the endpoint
         data : {
-            'warung' : $('#warung option:selected').val(),
-            'pesan' : $('#msg').val(),
+            '' : $('').val(),
+            '' : $('#msg').val(),
             'csrfmiddlewaretoken': window.CSRF_TOKEN,
         }, // data sent with the post request
 
