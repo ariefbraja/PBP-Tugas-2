@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from todolist.forms import TodolistForm
 from django.contrib.auth.models import User
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse, HttpResponseNotFound
 from django.core import serializers
 from django.utils import timezone
 
@@ -76,19 +76,27 @@ def create_task(request):
     context = {'form':form}
     return render(request, 'create-task.html', context)
 
-def show_todolist_json(request):
+def show_json(request):
     data_todolist = Task.objects.filter(user=request.user)
+    return HttpResponse(serializers.serialize("json", data_todolist))
 
-    return JsonResponse(serializers.serialize('json', data_todolist), safe=False)
+def addTask_ajax(request):
+    if request.method == 'POST':
+        title = request.POST.get("judul")
+        deskripsi = request.POST.get("deskripsi")
 
-def todolist_add(request):
-    dataFinal = []
-    data = {}
-    if request.method == "POST":
-        form = TodolistForm(request.POST)
-        if form.is_valid():
-            saving = form.save(commit=False)
-            saving.user=User.objects.get(username=request.user.username)
-            saving.save()
+        new_todolist = Task(title=title, description=deskripsi, user=request.user)
+        new_todolist.save()
 
-            return JsonResponse(serializers.serialize('json', saving), safe=False)
+        return HttpResponse(b"CREATED", status=201)
+
+    return HttpResponseNotFound()
+
+def deleteTask_ajax(request, id):
+    data = Task.objects.filter(user=request.user).get(pk=id)
+    data.delete()
+
+    return HttpResponse(b"DELETED", status=201)
+
+def views_ajax(request):
+    return render(request, "todolist-ajax.html")

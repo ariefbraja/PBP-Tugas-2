@@ -15,7 +15,7 @@
     
     <h1>Tambah Task Baru</h1>  
 
-        <form method="POST" >  
+        <form method="POST" id="postform">  
             {% csrf_token %}  
             <table class="table solid border w-auto" style="text-align:left;margin-right:auto;margin-left:auto;margin-top:25px;">
                 {{ form.as_table }}

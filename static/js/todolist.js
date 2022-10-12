@@ -1,4 +1,6 @@
 getTodolist()
+addTodolist()
+
 
 function getTodolist(){
     $.ajax({
@@ -52,29 +54,10 @@ function getTodolist(){
 }
 
 function addTodolist() {
-    console.log("create Testi is working!") // sanity check
-    $.ajax({
-        type : "POST", // http method
-        url : "addTesti/", // the endpoint
-        data : {
-            '' : $('').val(),
-            '' : $('#msg').val(),
-            'csrfmiddlewaretoken': window.CSRF_TOKEN,
-        }, // data sent with the post request
-
-        // handle a successful response
-        success : function(json) {
-            $('#msg').val(''); // remove the value from the input
-            getTesti();
-        },
-
-        // handle a non-successful response
-        error : function(xhr,errmsg,err) {
-            $('#results').html("<div class='alert-box alert radius' data-alert>Oops! Terjadi masalah : "+errmsg+
-                " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
-            console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
-        }
-    });
-};
-
+    fetch("{% url 'create_task' %}", {
+          method: "POST",
+          body: new FormData(document.querySelector('#form'))
+      }).then(getTodolist)
+    return false
+  }
 

@@ -1,0 +1,117 @@
+
+{% extends 'base.html' %}
+
+ {% block content %}
+ <nav class="navbar" style="background-color: #90ee90;">
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1">Welcome! {{user}}</span>
+    <a class="btn btn-info" href="{% url 'todolist:logout' %}" role="button">Logout</a>
+  </div>
+</nav>
+
+<br></br>
+<header>
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Add task</button>
+</header>
+
+<div id="ajax-cards"></div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">New Task</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="formtask">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">Title:</label>
+            <input type="text" class="form-control" id="field_title" name="judul">
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="col-form-label">Description:</label>
+            <textarea class="form-control" id="field_desc" name="deskripsi"></textarea>
+          </div>
+        </form>
+      </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="addtaskbutton" data-bs-dismiss="modal">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+  async function getTodolist(){
+    return fetch("{% url 'todolist:show_json' %}").then((res) => res.json())
+  }
+
+  async function refreshTodolist(){
+    document.getElementById("ajax-cards").innerHTML = ""
+    const todolist = await getTodolist()
+    let htmlString = ``
+    todolist.forEach(item=> {
+      status = item.pk
+      console.log(status)
+      console.log(item)
+      htmlString+=`\n
+      <div class = "cards" >
+        <p>
+        <span class="nowrap"><b>Date : </b></span>
+        <span class="nowrap">${item.fields.date}</span>
+        </p>
+        <p>
+        <span class="nowrap"><b>Title : </b></span>
+        <span class="nowrap">${item.fields.title}</span>
+        </p>
+        <p>
+        <span class="nowrap"><b>Description : </b></span>
+        <span class="nowrap">${item.fields.description}</span>
+        </p>
+        <p>
+        <span class="nowrap"><b>Status : </b></span>
+        <span class="nowrap">
+        ${item.fields.is_finished ?  "Selesai" : "Belum Selesai"}
+        <span>
+        </p>
+
+        <div class = "buttonwrapper">
+        <form method="POST" action="{% url 'todolist:change_status' %}">
+          {% csrf_token %}
+          <input type="hidden" name="id" value="${item.fields.id}"/>
+          <td><button type="submit" class="btn btn-warning" >Change Status</button></td>
+        </form>
+        <form method="POST" action="{% url 'todolist:delete_task' %}">
+          {% csrf_token %}
+          <input type="hidden" name="id" value="${item.fields.id}"/>
+          <td><button type="submit" class="btn btn-danger" >Delete</button></td>
+        </form>
+        </div>
+
+      </div>
+      `
+    });
+    document.getElementById("ajax-cards").innerHTML = htmlString
+  }
+  
+  async function addTask() {
+    fetch("{% url 'todolist:addTask_ajax' %}", {
+          method: "POST",
+          body: new FormData(document.querySelector('#formtask'))
+      }).then(refreshTodolist)
+    return false
+  }
+
+  document.getElementById("addtaskbutton").onclick = addTask
+  if(document.getElementById("tombol-delete") != null){
+  document.getElementById("tombol-delete").onclick = refreshTodolist
+  }
+  // document.getElementById("tombol-delete").onclick = refreshTodolist
+  refreshTodolist()
+
+</script>
+{% endblock content %}
