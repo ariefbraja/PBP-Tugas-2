@@ -7,6 +7,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from todolist.forms import TodolistForm
 from django.contrib.auth.models import User
+from django.http import JsonResponse
+from django.core import serializers
+from django.utils import timezone
 
 @login_required(login_url='/todolist/login/')
 def show_todolist(request):
@@ -72,3 +75,20 @@ def create_task(request):
 
     context = {'form':form}
     return render(request, 'create-task.html', context)
+
+def show_todolist_json(request):
+    data_todolist = Task.objects.filter(user=request.user)
+
+    return JsonResponse(serializers.serialize('json', data_todolist), safe=False)
+
+def todolist_add(request):
+    dataFinal = []
+    data = {}
+    if request.method == "POST":
+        form = TodolistForm(request.POST)
+        if form.is_valid():
+            saving = form.save(commit=False)
+            saving.user=User.objects.get(username=request.user.username)
+            saving.save()
+
+            return JsonResponse(serializers.serialize('json', saving), safe=False)
