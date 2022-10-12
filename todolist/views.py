@@ -80,7 +80,7 @@ def show_json(request):
     data_todolist = Task.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize("json", data_todolist))
 
-def addTask_ajax(request):
+def add_task_ajax(request):
     if request.method == 'POST':
         title = request.POST.get("title")
         description = request.POST.get("description")
@@ -92,7 +92,7 @@ def addTask_ajax(request):
 
     return HttpResponseNotFound()
 
-def deleteTask_ajax(request, id):
+def delete_task_ajax(request, id):
     data = Task.objects.filter(user=request.user).get(pk=id)
     data.delete()
 

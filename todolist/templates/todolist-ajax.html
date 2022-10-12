@@ -96,7 +96,7 @@
   }
   
   async function addTask() {
-    fetch("{% url 'todolist:addTask_ajax' %}", {
+    fetch("{% url 'todolist:add_task_ajax' %}", {
           method: "POST",
           body: new FormData(document.querySelector('#formtask'))
       }).then(refreshTodolist)
