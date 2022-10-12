@@ -100,12 +100,5 @@ def add_task_ajax(request):
     return HttpResponseNotFound()
 
 @login_required(login_url='/todolist/login/')
-def delete_task_ajax(request, id):
-    data = Task.objects.filter(user=request.user).get(pk=id)
-    data.delete()
-
-    return HttpResponse(b"DELETED", status=201)
-
-@login_required(login_url='/todolist/login/')
 def views_ajax(request):
     return render(request, "todolist-ajax.html")
