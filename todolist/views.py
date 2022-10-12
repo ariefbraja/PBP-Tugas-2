@@ -82,10 +82,10 @@ def show_json(request):
 
 def addTask_ajax(request):
     if request.method == 'POST':
-        title = request.POST.get("judul")
-        deskripsi = request.POST.get("deskripsi")
+        title = request.POST.get("title")
+        description = request.POST.get("description")
 
-        new_todolist = Task(title=title, description=deskripsi, user=request.user)
+        new_todolist = Task(title=title, description=description, user=request.user)
         new_todolist.save()
 
         return HttpResponse(b"CREATED", status=201)
