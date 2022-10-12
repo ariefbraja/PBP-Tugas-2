@@ -34,7 +34,6 @@ def change_status(request):
         todo.save()
     return redirect('todolist:show_todolist')
 
-@login_required(login_url='/todolist/login/')
 def register(request):
     form = UserCreationForm()
 
