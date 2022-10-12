@@ -19,12 +19,14 @@ def show_todolist(request):
     }
     return render(request, "todolist.html", context)
 
+@login_required(login_url='/todolist/login/')
 def delete_task(request):
     if request.method == "POST":
         todo = Task.objects.get(id=request.POST["id"])
         todo.delete()
     return redirect('todolist:show_todolist')
 
+@login_required(login_url='/todolist/login/')
 def change_status(request):
     if request.method == "POST":
         todo = Task.objects.get(id=request.POST["id"])
@@ -32,6 +34,7 @@ def change_status(request):
         todo.save()
     return redirect('todolist:show_todolist')
 
+@login_required(login_url='/todolist/login/')
 def register(request):
     form = UserCreationForm()
 
@@ -58,10 +61,12 @@ def login_user(request):
     context = {}
     return render(request, 'login.html', context)
 
+@login_required(login_url='/todolist/login/')
 def logout_user(request):
     logout(request)
     return redirect('todolist:login')
 
+@login_required(login_url='/todolist/login/')
 def create_task(request):
     form = TodolistForm()
 
@@ -76,10 +81,12 @@ def create_task(request):
     context = {'form':form}
     return render(request, 'create-task.html', context)
 
+@login_required(login_url='/todolist/login/')
 def show_json(request):
     data_todolist = Task.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize("json", data_todolist))
 
+@login_required(login_url='/todolist/login/')
 def add_task_ajax(request):
     if request.method == 'POST':
         title = request.POST.get("title")
@@ -92,11 +99,13 @@ def add_task_ajax(request):
 
     return HttpResponseNotFound()
 
+@login_required(login_url='/todolist/login/')
 def delete_task_ajax(request, id):
     data = Task.objects.filter(user=request.user).get(pk=id)
     data.delete()
 
     return HttpResponse(b"DELETED", status=201)
 
+@login_required(login_url='/todolist/login/')
 def views_ajax(request):
     return render(request, "todolist-ajax.html")
