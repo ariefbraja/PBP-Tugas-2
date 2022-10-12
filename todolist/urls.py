@@ -1,5 +1,5 @@
 from django.urls import path
-from todolist.views import show_todolist, show_json, views_ajax, add_task_ajax, delete_task_ajax
+from todolist.views import show_todolist, show_json, views_ajax, add_task_ajax
 from todolist.views import register, login_user, logout_user, create_task, delete_task, change_status
 
 
