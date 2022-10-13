@@ -101,3 +101,16 @@ def add_task_ajax(request):
 @login_required(login_url='/todolist/login/')
 def views_ajax(request):
     return render(request, "todolist-ajax.html")
+
+def delete_task_ajax(request, id):
+    todolist = Task.objects.filter(user=request.user).get(pk=id)
+    todolist.delete()
+
+    return HttpResponse(b"DELETED", status=204)
+
+def change_status_ajax(request, id):
+    todolist = Task.objects.filter(user=request.user).get(pk=id)
+    todolist.is_finished = not todolist.is_finished
+    todolist.save()
+
+    return HttpResponse(b"DELETED", status=204)

@@ -76,16 +76,12 @@
         <span>
         </p>
 
-        <div class = "buttonwrapper">
-        <form method="POST" action="{% url 'todolist:change_status' %}">
-          {% csrf_token %}
-          <input type="hidden" name="id" value="${item.fields.id}"/>
-          <td><button type="submit" class="btn btn-warning" >Change Status</button></td>
-        </form>
-        <form method="POST" action="{% url 'todolist:delete_task' %}">
-          {% csrf_token %}
-          <input type="hidden" name="id" value="${item.fields.id}"/>
-          <td><button type="submit" class="btn btn-danger" >Delete</button></td>
+        <button type="button" id="tombol-ubah" class="btn btn-warning" >
+              <a class="link" onclick="changeStatus(${item.pk})">Ubah</a>
+          </button>
+          <button type="button" id="tombol-delete" class="btn btn-danger">
+              <a class="link" onclick="deleteTask(${item.pk})">Delete</a>
+        </button>
         </form>
         </div>
 
@@ -101,6 +97,15 @@
           body: new FormData(document.querySelector('#formtask'))
       }).then(refreshTodolist)
     return false
+  }
+  async function deleteTask(id) {
+    let url = "/todolist/ajax/delete/" + id;
+    fetch(url).then(refreshTodolist)
+  }
+
+  async function changeStatus(id) {
+    let url = "/todolist/ajax/change-status/" + id;
+    fetch(url).then(refreshTodolist)
   }
 
   document.getElementById("addtaskbutton").onclick = addTask
