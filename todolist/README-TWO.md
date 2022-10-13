@@ -10,8 +10,10 @@ Asynchronus :
 
 # Event-Driven Programming
 Event-driven programming adalah sebuah paradigma yang di mana entitas berkomunikasi secara indirectly dengan mengirimkan pesan dari satu ke yang lainnya menggunakan intermediary.
+Contoh penerapannya adalah saat user menekan tombol add pada modal add. Dimana handler saat event terjadi adalah pemanggilan async function addTask() agar data todolist yang diinput user akan ditambah dan disimpan ke dalam database.
 
 # Penerapan Asynchronous Programming
+Penerapan asynchronous programming membuat user tidak harus melakukan refresh untuk meng-update datanya. AJAX melakukan pertukaran data antara web browser dan server serta melakukan render untuk menampilkan data yang didapatkan dari server. AJAX tidak harus menunggu agar seluruh webpage selesai loading. AJAX dapat mengakses data dari sumber eksternal meskipun webpage sudah selesai loading.
 
 # Implementasi Checklist
 1. Membuat file todolist-ajax.html
