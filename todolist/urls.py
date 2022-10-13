@@ -13,7 +13,7 @@ urlpatterns = [
     path('create-task/', create_task, name='create_task'),
     path('delete-task/', delete_task, name='delete_task'),
     path('change-task-status/', change_status, name='change_status'),
-    path('views-in-json/', show_json, name='show_json'),
-    path('json/', views_ajax, name='views_ajax'),
+    path('json/', show_json, name='show_json'),
+    path('ajax/', views_ajax, name='views_ajax'),
     path('add/', add_task_ajax, name='add_task_ajax'),
 ]
